@@ -4,7 +4,7 @@
     <div class="course_top_contaier">
       <div class="course_top_left">特色课</div>
       <div class="course_top_right">
-        <img src="../assets/sousuo.png" class="course_top_right_icon" alt />
+        <img src="../assets/sousuo.png" class="course_top_right_icon" v-on:click="toSearch" alt />
       </div>
     </div>
 
@@ -28,11 +28,14 @@
 
     <!-- 主体部分 -->
     <div class="course_main_container">
-        <div class="course_main_items" v-for="(item,index) in list.course" :key="index">
+        <div class="course_main_items" v-for="(item,index) in list.course" :key="index" v-on:click="courseDetails(item)">
           <div>{{item.title}}</div>
           <div class="course_main_items_time">
               <img :src="item.icon" class="course_main_items_time_icon" alt="">
               <span class="course_main_items_time.date">{{item.date}}</span>
+              <span style="margin-left:5px;">{{item.time}}</span>
+              <span style="margin-left:5px;">|</span>
+              <span style="margin-left:5px;">{{item.class}}</span>
           </div>
           <div style="margin-top:30px;">
               <img :src="item.photo" class="cours_main_items_photo" alt="">
@@ -67,6 +70,18 @@ export default {
         //   this.selectIndex=index
          this.showDown=false
          this.showUp=true
+        },
+        toSearch(){
+          this.$router.push('/search')
+        },
+        courseDetails(item){
+          console.log(item)
+          this.$router.push({
+            path:"/courseDetails",
+            query:{
+              courses:item
+            }
+          })
         }
     },
     mounted() {
@@ -129,7 +144,7 @@ export default {
 .course_main_container{
     width:100%;
     /* height: 800px; */
-    background:rgb(219, 219, 219);
+    background:rgb(240, 242, 245);
     position: absolute;;
     top:100px;
     margin:0 auto;;
@@ -151,8 +166,9 @@ export default {
     align-items:center;
 }
 .course_main_items_time_icon{
-    width:20px;
-    height: 20px;;
+    width:15px;
+    height:15px;
+    margin-right:5px;;
 }
 .course_main_items_time{
     font-size:14px;

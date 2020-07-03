@@ -50,6 +50,22 @@ Vue.use(VueRouter)
       isShowTabbar:false,
     }
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component:()=>import('../components/Search'),
+    meta:{
+      isShowTabbar:false,
+    }
+  },
+  {
+    path: '/courseDetails',
+    name: 'CourseDetails',
+    component:()=>import('../components/CourseDetails'),
+    meta:{
+      isShowTabbar:false,
+    }
+  }
   
 ]
 
