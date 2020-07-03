@@ -1,7 +1,7 @@
 <template>
   <div class="course_details_container">
     <div class="course_details_top">
-      <div>&lt;</div>
+      <div v-on:click="backCourse">&lt;</div>
       <div>课程详情</div>
       <div>
         <img src="../assets/fenxiang.png" class="course_details_top_icon" alt />
@@ -80,6 +80,11 @@ export default {
     return {
       detiailsItem: []
     };
+  },
+  methods:{
+      backCourse(){
+          this.$router.push('/course')
+      }
   },
   mounted() {
     this.detiailsItem = this.$route.query.courses;
