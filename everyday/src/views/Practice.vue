@@ -111,7 +111,7 @@ export default {
 }
 .practice_top_container {
   width: 100%;
-  height: 3rem;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ export default {
 }
 .practice_navigation_container {
   width: 100%;
-  height: 15.5rem;
+  height: 300px;
   background: #eee;
   display: flex;
   justify-content: center;
@@ -131,15 +131,15 @@ export default {
 }
 .practice_navigation_wrap {
   width: 93%;
-  height: 14rem;
+  height:270px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   background: #fff;
 }
 .practice_navigation_container .navigation_item {
-  width: 6rem;
-  height: 6.2rem;
+  width:25%;
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -147,8 +147,8 @@ export default {
   vertical-align: baseline;
 }
 .navigation_item img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 35px;
+  height: 35px;
 }
 .navigation_title {
   color: #595959;
@@ -159,54 +159,54 @@ export default {
 }
 .recent_container {
   width: 100%;
-  height: 2.5rem;
+  height: 45px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 1rem;
+  padding-left: 40px;
   box-sizing: border-box;
   color: #595959;
 }
 .sort_container {
   width: 100%;
-  height: 2.5rem;
+  height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
 }
 .default {
-  width: 6rem;
+  width: 30%;
   height: 100%;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 45px;
   color: orange;
   font-size: 18px;
 }
 .time {
-  width: 6rem;
+  width: 30%;
   height: 100%;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 45px;
   color: #595959;
   font-size: 18px;
 }
 .logo_container {
   width: 100%;
-  height: 13rem;
-  margin-top: 1rem;
+  height: 300px;
+  margin-top: 10px;
   /* border:1px solid red; */
 }
 .log {
   width: 100%;
-  height: 8.5rem;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .logo_info {
   width: 100%;
-  height: 0.5rem;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
