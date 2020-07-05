@@ -5,6 +5,7 @@ import Course from '../views/Course.vue';
 import HistoryCourse from '../views/HistoryCourse.vue';
 import Practice from '../views/Practice.vue';
 import Mine from '../views/Mine.vue';
+import Searchs from '../views/Searchs.vue';
 //引入 navigation路由
 import Test from '../views/navigation/Test.vue';
 import Suit from '../views/navigation/Suit.vue';
@@ -53,6 +54,14 @@ Vue.use(VueRouter)
     path: '/mine',
     name: 'Mine',
     component:Mine,
+    meta:{
+      isShowTabbar:false,
+    }
+  },
+  {
+    path: '/searchs',
+    name: 'Searchs',
+    component:Searchs,
     meta:{
       isShowTabbar:false,
     }

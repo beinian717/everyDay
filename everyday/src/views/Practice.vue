@@ -91,7 +91,7 @@ export default {
           this.$router.push("/scale");
           break;
         case 3:
-          this.$router.push("/mistake");
+          this.$router.push("/mistakes");
           break;
         case 4:
           this.$router.push("/appraisal");
