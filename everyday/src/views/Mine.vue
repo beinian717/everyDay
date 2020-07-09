@@ -15,8 +15,8 @@
               <input type="password" name="" id="" placeholder="请输入密码">
            </div>
            <div class="mine_verify">
-           <div>找回密码</div>
-           <div>注册/验证码登录</div>
+           <div @click="getPasswork">找回密码</div>
+           <div @click="rigister">注册/验证码登录</div>
            </div>
            <div class="mine_button">
                <button>登录</button>
@@ -35,7 +35,14 @@ export default {
         };
     },
     computed: {},
-    methods: {},
+    methods: {
+        getPasswork(){
+           this.$router.push("/getPasswork")
+        },
+        rigister(){
+             this.$router.push("/register")
+        }
+    },
     mounted() {},
     }
 </script>
@@ -48,7 +55,7 @@ export default {
 .mine_wrapper
 {
     width: 100%;
-    background: green;
+    /* background: green; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,7 +64,7 @@ export default {
 {
     width: 100%;
     height: 15rem;
-    background: chartreuse;
+    /* background: chartreuse; */
      display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +73,10 @@ export default {
 {
     width: 100%;
     height: 6.5rem;
-    background: crimson;
+    /* background: crimson; */
+     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .mine_input_container
 {
