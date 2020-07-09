@@ -6,7 +6,7 @@
 
 <script>
 
-export default {
+export default { 
     components: {},
     data() {
         return {

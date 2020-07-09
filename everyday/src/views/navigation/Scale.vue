@@ -162,7 +162,7 @@ export default {
 }
 .confirm1_container{
   width:100%;
-  height:201px;
+  height:140px;
   background:#fff;
   display: flex;
   flex-direction:column;
@@ -179,7 +179,7 @@ export default {
 }
 .meng_container{
   width:100%;
-  height:500px;
+  height:400px;
   background:rgba(39, 37, 37, 0.7);
   opacity:0.5;
   position:fixed;
