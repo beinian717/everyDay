@@ -10,7 +10,7 @@
 
     <!-- 筛选栏 -->
     <div class="course_sort_container">
-      <div
+      <!-- <div
         class="course_sort_items"
         v-for="(item,index) in list.sorts"
         :key="index"
@@ -23,8 +23,34 @@
         <span>
           <img src="../assets/up.png" v-show="showUp" class="course_sorts_items_icon" />
         </span>
+      </div> -->
+      <div v-on:click="leftClick"  class="course_sort_items">
+        <span>分类</span>
+        <span>
+          <img src="../assets/down.png" v-show="showDown" class="course_sorts_items_icon" />
+        </span>
+        <span>
+          <img src="../assets/up.png" v-show="showUp" class="course_sorts_items_icon" />
+        </span>
       </div>
-      <van-popup v-model="show" position="top"  style="position:absolute;top:100px;" />
+      <div v-on:click="middleClick" class="course_sort_items">
+        <span>排序</span>
+        <span>
+          <img src="../assets/down.png" v-show="showDown" class="course_sorts_items_icon" />
+        </span>
+        <span>
+          <img src="../assets/up.png" v-show="showUp" class="course_sorts_items_icon" />
+        </span>
+      </div>
+      <div v-on:click="rightClick" class="course_sort_items">
+        <span>筛选</span>
+        <span>
+          <img src="../assets/down.png" v-show="showDown" class="course_sorts_items_icon" />
+        </span>
+        <span>
+          <img src="../assets/up.png" v-show="showUp" class="course_sorts_items_icon" />
+        </span>
+      </div>
     </div>
 
     <!-- 主体部分 -->
@@ -67,12 +93,6 @@ export default {
     },
     computed: {},
     methods: {
-        onClick(){
-        //   this.selectIndex=index
-         this.showDown=false
-         this.showUp=true
-         this.show=true
-        },
         toSearch(){
           this.$router.push('/search')
         },
@@ -84,10 +104,19 @@ export default {
               courses:item
             }
           })
+        },
+        leftClick(){
+
+        },
+        middleClick(){
+
+        },
+        rightClick(){
+
         }
     },
     mounted() {
-        axios.get('http://localhost:8081/data.json').then((response)=>{
+        axios.get('data.json').then((response)=>{
             window.console.log(response.data)
             this.list=response.data
         })
@@ -133,7 +162,7 @@ export default {
   z-index: 999;
   background:white;
   position: relative;
-
+ font-size:16px;
 }
 .course_sort_items {
   font-size: 16px;

@@ -52,7 +52,7 @@ Vue.use(VueRouter)
     }
   },
   {
-<<<<<<< HEAD
+
     path: '/search',
     name: 'Search',
     component:()=>import('../components/Search'),
@@ -68,13 +68,12 @@ Vue.use(VueRouter)
       isShowTabbar:false,
     }
   }
-  
-=======
+  ,{
+
     path: '/details',
     name: 'details',
     component:Details,
-  },
->>>>>>> 2ea69b4f2e55cd5d0142ed3011844ce13c2c3e7e
+  }
 ]
 
 const router = new VueRouter({
