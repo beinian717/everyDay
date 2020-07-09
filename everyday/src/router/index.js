@@ -73,6 +73,17 @@ Vue.use(VueRouter)
     path: '/details',
     name: 'details',
     component:Details,
+
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component:()=>import("../views/login/Register"),
+  },
+  {
+    path: '/getPasswork',
+    name: 'GetPasswork',
+    component:()=>import("../views/login/GetPasswork"),
   }
 ]
 
