@@ -148,7 +148,7 @@ export default {
 }
 .left_confirm_container {
   width: 100%;
-  height: 300px;
+  height: 172px;
   position: fixed;
   top: 100px;
   background: #fff;
@@ -170,7 +170,7 @@ export default {
 }
 .right_confirm_container {
   width: 100%;
-  height: 300px;
+  height: 160px;
   position: fixed;
   top: 100px;
   background: #fff;
@@ -193,7 +193,7 @@ export default {
 
 .meng_container {
   width: 100%;
-  height: 450px;
+  height: 400px;
   background: rgba(0, 0, 0, 0.7);
   opacity: 0.5;
   position: fixed;

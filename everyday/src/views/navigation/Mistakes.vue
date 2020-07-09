@@ -177,7 +177,7 @@ export default {
 }
 .mistakes_confirm_item {
   width: 100%;
-  height: 60px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,7 +188,7 @@ export default {
 }
 .meng_container {
   width: 100%;
-  height: 480px;
+  height: 400px;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0px;

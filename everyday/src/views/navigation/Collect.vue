@@ -123,14 +123,14 @@ export default {
 }
 .collect_confirm_container {
   width: 100%;
-  height: 255px;
+  height: 200px;
   position: fixed;
   top: 100px;
   background: #fff;
 }
 .collect_confirm_item {
   width: 100%;
-  height: 60px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +141,7 @@ export default {
 }
 .meng_container {
   width: 100%;
-  height: 480px;
+  height: 400px;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0px;

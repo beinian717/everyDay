@@ -163,7 +163,7 @@ export default {
 }
 .confirm_container {
   width: 100%;
-  height: 200px;
+  height: 180px;
   background: #fff;
   display: flex;
   position: fixed;
@@ -210,7 +210,7 @@ export default {
 }
 .confirm_Right {
   width: 100%;
-  height: 200px;
+  height: 146px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -230,7 +230,7 @@ export default {
 }
 .meng_container {
   width: 100%;
-  height: 500px;
+  height: 360px;
   background: rgba(39, 37, 37, 0.7);
   opacity: 0.5;
   position: fixed;
@@ -238,7 +238,7 @@ export default {
 }
 .meng1_container {
   width: 100%;
-  height: 500px;
+  height: 400px;
   background: rgba(39, 37, 37, 0.7);
   opacity: 0.5;
   position: fixed;

@@ -127,7 +127,16 @@ const routes = [
     name: 'details',
     component: Details,
   },
-
+  {
+    path: '/register',
+    name: 'Register',
+    component:()=>import("../views/login/Register"),
+  },
+  {
+    path: '/getPasswork',
+    name: 'GetPasswork',
+    component:()=>import("../views/login/GetPasswork"),
+  }
 ]
 
 const router = new VueRouter({
@@ -136,4 +145,4 @@ const router = new VueRouter({
   routes
 })
 
-export default router
+export default router;
