@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-tabbar active-color="orange" v-model="active">
+    <van-tabbar v-show="this.$route.meta.isShowTabbar" active-color="orange" v-model="active">
       <van-tabbar-item
         @click="onClick(index)"
         :icon="item.icon"
@@ -27,6 +27,26 @@ export default {
       ]
     };
   },
+  mounted() {
+    var path = window.location.pathname;
+    switch (path) {
+      case "/":
+        this.active = 0;
+        break;
+      case "/course":
+        this.active = 1;
+        break;
+      case "/historyCourse":
+        this.active = 2;
+        break;
+      case "/practice":
+        this.active = 3;
+        break;
+      case "/mine":
+        this.active = 4;
+        break;
+    }
+  },
   methods: {
     onClick(index) {
       this.active = index;
@@ -51,6 +71,7 @@ export default {
   }
 };
 </script>
+
 <style>
 html {
   font-size: 20px;

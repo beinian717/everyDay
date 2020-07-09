@@ -5,6 +5,7 @@ import Course from '../views/Course.vue';
 import HistoryCourse from '../views/HistoryCourse.vue';
 import Practice from '../views/Practice.vue';
 import Mine from '../views/Mine.vue';
+import Details from '../components/Details.vue';
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,7 @@ Vue.use(VueRouter)
     name: 'Practice',
     component: Practice,
     meta:{
+      name:"练习",
       isShowTabbar:true,
     }
   },
@@ -49,7 +51,11 @@ Vue.use(VueRouter)
       isShowTabbar:false,
     }
   },
-  
+  {
+    path: '/details',
+    name: 'details',
+    component:Details,
+  },
 ]
 
 const router = new VueRouter({
