@@ -3,7 +3,7 @@
        <div class="mine_wrapper">
            <div class="mine_wrapper_title">
                <div class="mine_wrapper_img">
-                   <img src=""/>
+                   <img src="../assets/msmk.png"/>
                </div>
            </div>
        </div> 
