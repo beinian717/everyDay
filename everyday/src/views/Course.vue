@@ -24,6 +24,7 @@
           <img src="../assets/up.png" v-show="showUp" class="course_sorts_items_icon" />
         </span>
       </div>
+      <van-popup v-model="show" position="top"  style="position:absolute;top:100px;" />
     </div>
 
     <!-- 主体部分 -->
@@ -61,7 +62,7 @@ export default {
            list:[],
            showDown:true,
            showUp:false,
-           
+           show:false
         };
     },
     computed: {},
@@ -70,6 +71,7 @@ export default {
         //   this.selectIndex=index
          this.showDown=false
          this.showUp=true
+         this.show=true
         },
         toSearch(){
           this.$router.push('/search')
@@ -130,6 +132,8 @@ export default {
   top:50px;
   z-index: 999;
   background:white;
+  position: relative;
+
 }
 .course_sort_items {
   font-size: 16px;
