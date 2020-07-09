@@ -14,7 +14,7 @@
         <div>
             <img src="../assets/york_img.png" alt="">
             <br>
-            <button>登录/注册</button>
+            <button @click="toLogin">登录/注册</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,11 @@ export default {
         };
     },
     computed: {},
-    methods: {},
+    methods: {
+      toLogin(){
+        this.$router.push('/mine')
+      }
+    },
     mounted() {},
     }
 </script>
