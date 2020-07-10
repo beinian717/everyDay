@@ -11,7 +11,7 @@
       </van-tabbar-item>
     </van-tabbar>
     
-      <VueDragResize :isActive="true"  :isResizable="false" >
+      <VueDragResize :isActive="true"  :isResizable="false" v-show="this.$route.meta.isShow">
       <div class="email">
         <img src="./assets/email.png"  height="100px" width="100px" />
       </div>
@@ -84,6 +84,10 @@ export default {
 </script>
 
 <style>
+*{
+  padding: 0;
+margin: 0;
+}
 html {
   font-size: 15px;
 }

@@ -136,6 +136,14 @@ const routes = [
     path: '/getPasswork',
     name: 'GetPasswork',
     component:()=>import("../views/login/GetPasswork"),
+  },
+  {
+    path: '/mymine',
+    name: 'MyMine',
+    component:()=>import("../views/login/MyMine"),
+    meta:{
+      isShow:false
+    }
   }
 ]
 
