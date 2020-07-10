@@ -114,7 +114,7 @@ export default {
    }
    .rigister_confirm button
    {
-       width: 64%;
+       width: 70%;
        height: 40px;
        color: white;
        border: 0;
