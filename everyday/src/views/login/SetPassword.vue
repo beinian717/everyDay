@@ -15,7 +15,7 @@
              <div class="set_password_confirm">
             <button>确定</button>
     </div>  
-        </div>
+        <!-- </div> -->
     </div>
 </template>
 <script>

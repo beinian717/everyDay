@@ -9,7 +9,7 @@
         <div >
              <div class="get_passwork_phone">
              <input type="number" name="" id="" placeholder="请输入手机号">
-             <button style="color:orange">获取验证码</button>
+             <button style="color:orange">获取验证码<span>1miao</span></button>
         </div>
         <div class="get_passwork_phone">
              <input type="number" name="" id="" placeholder="请输入验证码">

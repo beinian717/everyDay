@@ -5,7 +5,7 @@
       <van-swipe class="my-swipe" :autoplay="2000" indicator-color="white">
         <van-swipe-item v-for="(item,i) in swiper" :key="i">
           <div class="home_swipwe">
-            <img :src="item.img" />
+            <img :src="item.banner_img" />
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -25,16 +25,16 @@
     <!-- ======名师阵容==== -->
     <div class="home_teacher">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">名师阵容</div>
+      <div class="teacher_name_title">{{this.teacherName.name}}</div>
     </div>
     <!-- ======名师阵容详情==== -->
     <div>
       <div v-for="(item,i) in teacher" :key="i" @click="goMine" class="teacher_count">
         <div class="teacher_iamge">
-          <img :src="item.img" />
+          <img :src="item.teacher_avatar" />
         </div>
         <div class="teacher_txt">
-          {{item.name}}
+          {{item.teacher_name}}
           <div class="teacher_name">
             {{item.details}}
             <div></div>
@@ -45,21 +45,21 @@
     <!-- ========精品课堂====== -->
     <div class="home_jing">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">精品课堂</div>
+      <div class="teacher_name_title">{{this.starName.name}}</div>
     </div>
 
     <!-- =======精品课堂详情====-->
     <div>
-      <div v-for="(item,i) in bottom" :key="i" class="bottom_count">
+      <div v-for="(item,i) in teacher[1].list" :key="i" class="bottom_count">
         <div>
           <div class="home_bottom">{{item.title}}</div>
           <div class="home_ke">{{item.ke}}</div>
         </div>
         <div class="buttom_img_name">
           <div class="bottom_image">
-            <img :src="item.img" />
+            <img :src="item.teacher_avatar" />
           </div>
-          <div class="buttom_name">{{item.name}}</div>
+          <div class="buttom_name">{{item.teacher_name}}</div>
         </div>
         <div class="bottom_price">
           <div class="bottom_num">{{item.num}}</div>
@@ -70,7 +70,7 @@
     <!-- ========明星讲师====== -->
     <div class="home_jing">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">明星讲师</div>
+      <div class="teacher_name_title">{{this.infoName.name}}</div>
     </div>
     <!-- ======明星详情==== -->
     <div>
@@ -100,29 +100,40 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data() {
     return {
       swiper: [],
-      introduce: [],
       teacher: [],
+      introduce:[],
       bottom: [],
       star: [],
-      show:false
+      show:false,
+      teacherName:{},
+      starName:{},
+      infoName:{},
     };
   },
   name: "Home",
   components: {},
   mounted() {
-    axios.get("http://localhost:8080/swiper.json").then(res => {
-      console.log(res.data.bottom);
-      this.swiper = res.data.swiper;
-      this.introduce = res.data.introduce;
-      this.teacher = res.data.teacher;
-      this.bottom = res.data.bottom;
-      this.star = res.data.star;
+    this.$Https.get("/api/app/banner").then(res => {
+      // console.log(res.data.data);
+      this.swiper = res.data.data;
+      // this.introduce = res.data.introduce;
+      // this.teacher = res.data.teacher;
+      // this.bottom = res.data.bottom;
+      // this.star = res.data.star;
     });
+    this.$Https.get('/api/app/recommend/appIndex').then((resp)=>{
+      console.log(resp.data.data);
+      this.teacher=resp.data.data;
+      this.teacherName=this.teacher[0].channel_info;
+      this.starName=this.teacher[1].channel_info;
+      this.infoName=this.teacher[2].channel_info;
+      // console.log(this.teacherName)
+    })
   },
   methods:{
     goDetails(item){

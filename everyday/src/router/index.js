@@ -16,6 +16,7 @@ import Appraisal from '../views/navigation/Appraisal.vue';
 import Collect from '../views/navigation/Collect.vue';
 
 import Details from '../components/Details.vue';
+import SetPassword from '../views/login/SetPassword';
 
 
 Vue.use(VueRouter)
@@ -136,6 +137,11 @@ const routes = [
     path: '/getPasswork',
     name: 'GetPasswork',
     component:()=>import("../views/login/GetPasswork"),
+  },
+  {
+    path: '/setPassWord',
+    name: 'SetPassword',
+    component:SetPassword,
   }
 ]
 
@@ -144,5 +150,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//       console.log(to,from);
+//       if(to.name=="Register"){
+//         next()
+//       }
+//       next();
+// })
 
 export default router;
