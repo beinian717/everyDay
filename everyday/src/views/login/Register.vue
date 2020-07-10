@@ -7,11 +7,11 @@
            </div>
         <div >
              <div class="rigister_phone">
-             <input type="number" name="" id="" placeholder="请输入手机号">
-             <button style="color:orange">获取验证码</button>
+             <input type="number" name="" v-model="phone" id="" placeholder="请输入手机号">
+             <button style="color:orange"  @click="onClick">获取验证码</button>
         </div>
         <div class="rigister_phone">
-             <input type="number" name="" id="" placeholder="请输入验证码">
+             <input type="number" name="" id="" v-model="code" placeholder="请输入验证码">
         </div>
           <div class="rigister_phone">
              <input type="password" name="" id="" placeholder="*未注册的手机号将自动注册">
@@ -19,13 +19,39 @@
         </div>
         </div>
         <div class="rigister_confirm">
-            <button>登录</button>
+            <button @click="loginClick">登录</button>
     </div>  
    </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+            phone:"",
+            code:"",
+        }
+    },
  methods: {
+     onClick(){
+         this.$Https.post('/api/app/smsCode',{
+             mobile:this.phone,
+             sms_type:"login",
+         }).then((res)=>{
+             console.log(res)
+         })
+     },
+     loginClick(){
+         this.$Https.post('/api/app/login',{
+             type:2,
+             mobile:this.phone,
+             sms_code:this.code,
+             client:1,
+         }).then((resp)=>{
+             console.log(resp.data);
+             window.localStorage.setItem("id",resp.data.data.id);
+             window.localStorage.setItem("Token",resp.data.data.remember_token);
+         })
+     }
  },
  computed: {
  }
