@@ -115,7 +115,7 @@ export default {
   name: "Home",
   components: {},
   mounted() {
-    axios.get("http://localhost:8080/swiper.json").then(res => {
+    axios.get("swiper.json").then(res => {
       console.log(res.data.bottom);
       this.swiper = res.data.swiper;
       this.introduce = res.data.introduce;

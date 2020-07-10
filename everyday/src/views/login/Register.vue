@@ -7,11 +7,11 @@
            </div>
         <div >
              <div class="rigister_phone">
-             <input type="number" name="" id="" placeholder="请输入手机号">
-             <button style="color:orange">获取验证码</button>
+             <input type="number" name="" id="" v-model="user" placeholder="请输入手机号">
+             <button style="color:orange" @click="onClick">获取验证码</button>
         </div>
         <div class="rigister_phone">
-             <input type="number" name="" id="" placeholder="请输入验证码">
+             <input type="number" name="" id="" v-model="code" placeholder="请输入验证码">
         </div>
           <div class="rigister_phone">
              <input type="password" name="" id="" placeholder="*未注册的手机号将自动注册">
@@ -19,15 +19,33 @@
         </div>
         </div>
         <div class="rigister_confirm">
-            <button>登录</button>
+            <button @click="denglu">登录</button>
     </div>  
    </div>
 </template>
 <script>
 export default {
- methods: {
- },
  computed: {
+ },
+ data(){
+     return{
+         user:"",
+         code:""
+     }  
+ },
+ methods:{
+    async onClick(){
+        let res = await this.$http.post("/api/app/smsCode",{mobile:this.user,sms_type:'login'})
+            console.log(res.data)
+        
+        
+     },
+    async denglu(){
+         let resdeng = await this.$http.post("/api/app/login",{mobile:this.user,sms_code:this.code,type:2,client:1})
+            console.log(resdeng.data)
+            window.localStorage.setItem("deng_token",resdeng.data.data.remember_token)
+            window.localStorage.setItem("dengid",resdeng.data.data.id)
+     }
  }
 }
 </script>
