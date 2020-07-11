@@ -5,7 +5,7 @@
       <van-swipe class="my-swipe" :autoplay="2000" indicator-color="white">
         <van-swipe-item v-for="(item,i) in swiper" :key="i">
           <div class="home_swipwe">
-            <img :src="item.img" />
+            <img :src="item.banner_img" alt/>
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -25,7 +25,7 @@
     <!-- ======名师阵容==== -->
     <div class="home_teacher">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">名师阵容</div>
+      <div class="teacher_name_title">{{this.one.name}}</div>
     </div>
     <!-- ======名师阵容详情==== -->
     <div>
@@ -45,7 +45,7 @@
     <!-- ========精品课堂====== -->
     <div class="home_jing">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">精品课堂</div>
+      <div class="teacher_name_title">{{this.two.name}}</div>
     </div>
 
     <!-- =======精品课堂详情====-->
@@ -70,7 +70,7 @@
     <!-- ========明星讲师====== -->
     <div class="home_jing">
       <div class="teacher_border"></div>
-      <div class="teacher_name_title">明星讲师</div>
+      <div class="teacher_name_title">{{this.three.name}}</div>
     </div>
     <!-- ======明星详情==== -->
     <div>
@@ -109,20 +109,34 @@ export default {
       teacher: [],
       bottom: [],
       star: [],
-      show:false
+      show:false,
+      one:[],
+      two:[],
+      three:[]
     };
   },
   name: "Home",
   components: {},
   mounted() {
-    axios.get("http://localhost:8080/swiper.json").then(res => {
-      console.log(res.data.bottom);
-      this.swiper = res.data.swiper;
-      this.introduce = res.data.introduce;
-      this.teacher = res.data.teacher;
-      this.bottom = res.data.bottom;
-      this.star = res.data.star;
-    });
+    axios.get('/api/app/banner').then((res)=>{
+      // console.log(res.data.data)
+       this.swiper = res.data.data;
+       this.introduce = res.data.introduce;
+       this.teacher = res.data.teacher;
+       this.bottom = res.data.bottom;
+       this.star = res.data.star;
+
+    })
+     this.$http.get('/api/app/recommend/appIndex').then((res)=>{
+      console.log(res.data.data[0].channel_info)
+       this.introduce = res.data.introduce;
+       this.teacher = res.data.teacher;
+       this.bottom = res.data.bottom;
+       this.star = res.data.star;
+       this.one=res.data.data[0].channel_info
+       this.two=res.data.data[1].channel_info
+       this.three=res.data.data[2].channel_info
+    })
   },
   methods:{
     goDetails(item){

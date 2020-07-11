@@ -107,8 +107,10 @@
       </div>
       <!-- 右边弹出层 -->
       <div class="pop_content_right" v-show="popRight">
-        <div class="pop_content_left_items_list_items" v-for="(item,index) in popRightItems" :key="index">
-          {{item.name}}
+        <div class="pop_content_right_container">
+          <div class="pop_content_left_items_list_items" v-for="(item,index) in popRightItems" :key="index">
+            {{item.name}}
+        </div>
         </div>
       </div>
     </div>
@@ -166,14 +168,15 @@ export default {
     }
   },
   mounted() {
-    axios.get("data.json").then(response => {
+    axios.get("http://localhost:9000/data.json").then(response => {
       // window.console.log(response.data);
       this.list = response.data;
       this.sorts=this.list.sorts
       this.popLeftItems=this.sorts[0].left
       this.popMiddleItems=this.sorts[1]
-      this.popRightItems=this.sorts[2]
-      window.console.log(this.popLeftItems)
+      this.popRightItems=this.sorts[2].classify
+      window.console.log(this.popMiddleItems)
+      window.console.log(this.popRightItems)
       // this.popLeftItems=this.list.sorts.left
     });
   }
@@ -292,7 +295,7 @@ export default {
 }
 .pop_content_left {
   width: 100%;
-  height: 257px;
+  height: 267px;
   background: white;
 }
 .pop_content_middle {
@@ -302,8 +305,8 @@ export default {
 }
 .pop_content_right {
   width: 100%;
-  height: 200px;
-  background: seagreen;
+  height: 120px;
+  background: white;
 }
 .pop_content_left_items{
   width:100%;
@@ -327,7 +330,7 @@ flex-wrap:wrap;
   align-items: center;
   background:rgb(238, 238, 238);
   margin:0 3%;
-  margin-top:3px;
+  margin-top:8px;
   font-size:14px;
 }
 .pop_left_footer{
@@ -366,6 +369,13 @@ flex-wrap:wrap;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size:16px;;
+  font-size:16px;
+  border-bottom:1px solid rgb(236, 236, 236);;
+}
+.pop_content_right_container{
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;;
 }
 </style>
