@@ -168,8 +168,8 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://localhost:9000/data.json").then(response => {
-      // window.console.log(response.data);
+    axios.get("http://localhost:8080/data.json").then(response => {
+      window.console.log(response.data);
       this.list = response.data;
       this.sorts=this.list.sorts
       this.popLeftItems=this.sorts[0].left

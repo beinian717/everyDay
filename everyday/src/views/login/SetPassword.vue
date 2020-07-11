@@ -15,12 +15,7 @@
              <div class="set_password_confirm">
             <button v-on:click="onSure">确定</button>
     </div>  
-<<<<<<< HEAD
-        <!-- </div> -->
-    </div>
-=======
         </div>
->>>>>>> 6f714fcc2b617a56d8d9f135984c5a4932faf457
 </template>
 <script>
 export default {
