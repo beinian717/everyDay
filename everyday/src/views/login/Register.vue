@@ -9,7 +9,7 @@
       <div class="rigister_phone">
         <input type="number" name v-model="phone" id placeholder="请输入手机号" />
         <button style="color:orange" @click="onClick">获取验证码</button>
-        <span v-show="timeShow">{{time}}</span>
+        <span v-show="timeShow"></span>
       </div>
       <div class="rigister_phone">
         <input type="number" name id v-model="code" placeholder="请输入验证码" />
@@ -33,19 +33,10 @@ export default {
       phone: "",
       code: "",
       times: 60,
-      tiemShow:false,
     };
-  },
-  computed:{
-    time:function(){
-      if(this.timeShow){
-        this.time--;
-      }
-    }
   },
   methods: {
     onClick() {
-      this.timeShow=true;
       this.$Https
         .post("/api/app/smsCode", {
           mobile: this.phone,
@@ -72,6 +63,8 @@ export default {
           window.localStorage.setItem("Token", resp.data.data.remember_token);
           if (resp.data.data.is_new == 1) {
             this.$router.push("/setPassWord");
+          }else{
+            this.$router.push('/mymine')
           }
         });
     }

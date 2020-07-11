@@ -10,13 +10,22 @@
         <span style="font-size:1rem">{{item.name}}</span>
       </van-tabbar-item>
     </van-tabbar>
+    
+      <VueDragResize :isActive="true"  :isResizable="false" v-show="this.$route.meta.isShow">
+      <div class="email">
+        <img src="./assets/email.png"  height="100px" width="100px" />
+      </div>
+      </VueDragResize>
     <router-view />
   </div>
 </template>
 <script>
-
+import VueDragResize from 'vue-drag-resize';
 
 export default {
+  components: {
+    VueDragResize
+  },
   data() {
     return {
       active: 0,
@@ -75,7 +84,31 @@ export default {
 </script>
 
 <style>
+*{
+  padding: 0;
+margin: 0;
+}
 html {
   font-size: 15px;
+}
+.email{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: blue;
+  position: absolute;
+  top: 41.3rem;
+  left: 22.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.email img{
+  width: 70%;
+  height: 70%;
+}
+.vdr.active:before{
+  outline: none
 }
 </style>

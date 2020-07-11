@@ -142,6 +142,14 @@ const routes = [
     path: '/setPassWord',
     name: 'SetPassword',
     component:SetPassword,
+  },
+  {
+    path: '/mymine',
+    name: 'MyMine',
+    component:()=>import("../views/login/MyMine"),
+    meta:{
+      isShow:false
+    }
   }
 ]
 
