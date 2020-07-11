@@ -63,7 +63,7 @@ export default {
 .mine_wrapper_title
 {
     width: 100%;
-    height: 15rem;
+    height: 8rem;
     /* background: chartreuse; */
      display: flex;
     justify-content: center;
@@ -85,11 +85,12 @@ export default {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    font-size: 0.7rem;
 }
 .mine_input_text
 {
     width: 80%;
-    height: 4.2rem;
+    height: 3.2rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -97,7 +98,7 @@ export default {
 .mine_input_password
 {
     width: 80%;
-    height: 4.2rem;
+    height: 3.2rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -105,7 +106,7 @@ export default {
 .mine_input_container div input
 {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border-top-width: 0;
     border-left-width: 0;
     border-right-width: 0;
@@ -116,7 +117,7 @@ export default {
 .mine_verify
 {
      width: 80%;
-    height: 4.2rem;
+    height: 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,19 +125,18 @@ export default {
     /* background: chartreuse; */
 }
 .mine_button{
-     width: 80%;
-    height: 7rem;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 .mine_button button
 {
-    width: 100%;
-    height: 3.5rem;
-    border-radius: 3.5rem;
-    border: 0;
-    background: orange;
+    width: 70%;
+    height: 40px;
     color: white;
+    border: 0;
+    border-radius: 40px;
+    background: orangered;
 }
 </style>
