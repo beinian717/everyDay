@@ -28,7 +28,7 @@
     </div>
 
     <!-- 下边的内容 -->
-    <div class="home_container" v-for="(item,index) in homeList" :key="index">
+    <div class="home_container" v-for="(item,index) in homeList" @click="goMine" :key="index">
       <!-- ======名师阵容==== -->
       <div class="home_teacher" v-if="item.channel_info.type===3">
         <div class="home_name">{{item.channel_info.name}}</div>
@@ -156,6 +156,7 @@ export default {
       });
     },
     goMine() {
+      console.log(1111)
       this.show = true;
     },
     icon() {
@@ -229,8 +230,8 @@ export default {
   height: 18rem;
   background-color: white;
   position: fixed;
-  top: 12rem;
-  left: 2rem;
+  top: 16rem;
+  left: 5rem;
   border-radius: 15px;
 }
 .iconfont {
@@ -252,6 +253,7 @@ export default {
   text-align: center;
   font-size: 12px;
   color: gray;
+  margin-top: 1rem;
 }
 .log_image img {
   width: 100%;
@@ -266,6 +268,7 @@ export default {
   line-height: 2rem;
   border-radius: 10px;
   margin: auto;
+  margin-top: 1rem;
 }
 .home_teacher {
   margin-top: 1rem;
@@ -275,14 +278,16 @@ export default {
   margin-left: 0.5rem;
 }
 .home_index_da {
-  width: 100%;
+  width: 90%;
   background-color: whitesmoke;
+  margin-left: 1rem;
 }
 .home_image {
   width: 3rem;
   height: 3rem;
   background-color: greenyellow;
   border-radius: 3rem;
+  margin-left: 1rem;
 }
 .home_image img {
   width: 100%;
@@ -294,8 +299,10 @@ export default {
 }
 .index_count {
   width: 100%;
+  height: 4rem;
   background-color: white;
   display: inline-flex;
+  margin-top: 0.5rem;
 }
 .index_introduction {
   font-size: 12px;
