@@ -22,7 +22,7 @@
 
 <script>
 
-export default {
+export default { 
     components: {},
     data() {
         return {
@@ -47,19 +47,19 @@ export default {
 }
 .york_login{
     width: 100%;
-    height: 29.6rem;
+    height: 43.6rem;
     background-color: rgb(240, 242, 245);
 }
 .york_login div{
     position: absolute;
-    top: 12rem;
-    left: 4rem;
+    top: 15rem;
+    left: 6rem;
 }
 .york_login button{
     width: 7.5rem;
     height: 1.5rem;
     font-size: 0.7rem;
-    margin-left: 2.5rem;
+    margin-left: 4.3rem;
     background-color: orange;
     border: none;
     color: white;

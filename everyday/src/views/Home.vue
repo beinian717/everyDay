@@ -129,7 +129,7 @@ export default {
     })
      this.$http.get('/api/app/recommend/appIndex').then((res)=>{
       console.log(res.data.data[0].channel_info)
-       this.introduce = res.data.introduce;
+      //  this.introduce = res.data.introduce;
        this.teacher = res.data.teacher;
        this.bottom = res.data.bottom;
        this.star = res.data.star;

@@ -7,7 +7,12 @@
     <!-- navigation部分 -->
     <div class="practice_navigation_container">
       <div class="practice_navigation_wrap">
-        <div class="navigation_item" v-for="(item,index) in navigationData" :key="index">
+        <div
+          class="navigation_item"
+          @click="onClick(index)"
+          v-for="(item,index) in navigationData"
+          :key="index"
+        >
           <div class="navigation_item_image">
             <img :src="item.img" alt />
           </div>
@@ -17,17 +22,17 @@
     </div>
     <!-- 近期模考部分 -->
     <div class="practice_sort_container">
-        <div class="recent_container">近期模考</div>
-        <div class="sort_container">
-            <div class="default">默认排序</div>
-            <div class="time">时间</div>
+      <div class="recent_container">近期模考</div>
+      <div class="sort_container">
+        <div class="default">默认排序</div>
+        <div class="time">时间</div>
+      </div>
+      <div class="logo_container">
+        <div class="log">
+          <img src="../assets/nologo.png" alt />
         </div>
-        <div class="logo_container">
-            <div class="log">
-                <img src="../assets/nologo.png" alt="">
-            </div>
-            <div class="logo_info">暂无模考安排，敬请期待</div>
-        </div>
+        <div class="logo_info">暂无模考安排，敬请期待</div>
+      </div>
     </div>
   </div>
 </template>
@@ -72,7 +77,31 @@ export default {
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    onClick(index) {
+      console.log(index);
+      switch (index) {
+        case 0:
+          this.$router.push("/test");
+          break;
+        case 1:
+          this.$router.push("/suit");
+          break;
+        case 2:
+          this.$router.push("/scale");
+          break;
+        case 3:
+          this.$router.push("/mistakes");
+          break;
+        case 4:
+          this.$router.push("/appraisal");
+          break;
+        case 5:
+          this.$router.push("/collect");
+          break;
+      }
+    }
+  },
   mounted() {}
 };
 </script>
@@ -82,7 +111,7 @@ export default {
 }
 .practice_top_container {
   width: 100%;
-  height: 3rem;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,23 +123,23 @@ export default {
 }
 .practice_navigation_container {
   width: 100%;
-  height:15.5rem;
+  height: 300px;
   background: #eee;
   display: flex;
   justify-content: center;
-  align-items:center;   
+  align-items: center;
 }
 .practice_navigation_wrap {
   width: 93%;
-  height: 14rem;
+  height:270px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   background: #fff;
 }
 .practice_navigation_container .navigation_item {
-  width: 6rem;
-  height: 6.2rem;
+  width:25%;
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -118,70 +147,70 @@ export default {
   vertical-align: baseline;
 }
 .navigation_item img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 35px;
+  height: 35px;
 }
 .navigation_title {
   color: #595959;
   font-size: 17px;
 }
-.practice_sort_container{
-    width:100%;
+.practice_sort_container {
+  width: 100%;
 }
-.recent_container{
-    width:100%;
-    height:2.5rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items:center;
-    padding-left:1rem;
-    box-sizing:border-box;
-    color:#595959;
+.recent_container {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 40px;
+  box-sizing: border-box;
+  color: #595959;
 }
-.sort_container{
-    width:100%;
-    height:2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    font-size:18px;
+.sort_container {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
 }
-.default{
-    width:6rem;
-    height:100%;
-    text-align:center;
-    line-height:2.5rem;
-    color:orange;
-    font-size:18px;
+.default {
+  width: 30%;
+  height: 100%;
+  text-align: center;
+  line-height: 45px;
+  color: orange;
+  font-size: 18px;
 }
-.time{
-    width:6rem;
-    height:100%;
-    text-align:center;
-    line-height:2.5rem;
-    color:#595959;
-    font-size:18px;
+.time {
+  width: 30%;
+  height: 100%;
+  text-align: center;
+  line-height: 45px;
+  color: #595959;
+  font-size: 18px;
 }
-.logo_container{
-    width:100%;
-    height:13rem;
-    margin-top:1rem;
-    /* border:1px solid red; */
+.logo_container {
+  width: 100%;
+  height: 300px;
+  margin-top: 10px;
+  /* border:1px solid red; */
 }
-.log{
-    width:100%;
-    height:8.5rem;
-    display: flex;
-    justify-content: center;
-    align-items:center;
+.log {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.logo_info{
-    width:100%;
-    height:0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    font-size:17px;
-    color:#595959;
+.logo_info {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  color: #595959;
 }
 </style>

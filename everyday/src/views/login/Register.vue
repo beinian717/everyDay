@@ -16,7 +16,7 @@
       </div>
       <div class="rigister_phone">
         <input type="password" name id placeholder="*未注册的手机号将自动注册" />
-        <button style="color:grey">使用密码登录</button>
+        <button style="color:grey" v-on:click="userPassword">使用密码登录</button>
       </div>
     </div>
     <div class="rigister_confirm">
@@ -73,7 +73,22 @@ export default {
           );
           //  用户id
           window.localStorage.setItem("userid", res.data.data.id);
+          console.log(res.data.data.is_new)
+          if(res.data.data.is_new==2){
+              this.$router.push('/mymine')
+          }else if(res.data.data.is_new==1){
+              this.$router.push({
+                  path:'/setpassword',
+                  query:{
+                      users:this.user,
+                      codes:this.code
+                  }
+              })
+          }
         });
+    },
+    userPassword(){
+        this.$router.push('/getpasswork')
     }
   },
   computed: {},

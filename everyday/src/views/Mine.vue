@@ -9,17 +9,17 @@
        </div> 
        <div class="mine_input_container">
            <div class="mine_input_text">
-               <input type="number" name="" id="" placeholder="请输入手机号">
+               <input type="number" v-model="mobile" name="" id="" placeholder="请输入手机号">
            </div>
            <div class="mine_input_password">
-              <input type="password" name="" id="" placeholder="请输入密码">
+              <input type="password" v-model="password" name="" id="" placeholder="请输入密码">
            </div>
            <div class="mine_verify">
            <div @click="getPasswork">找回密码</div>
            <div @click="rigister">注册/验证码登录</div>
            </div>
            <div class="mine_button">
-               <button>登录</button>
+               <button v-on:click="goLogin">登录</button>
            </div>
        </div>
     </div>
@@ -31,7 +31,8 @@ export default {
     components: {},
     data() {
         return {
-
+           mobile:'',
+           password:''
         };
     },
     computed: {},
@@ -41,6 +42,22 @@ export default {
         },
         rigister(){
              this.$router.push("/register")
+        },
+        goLogin(){
+            this.$http.post('/api/app/login',{mobile:this.mobile,password:this.password,type:1}).then((res)=>{
+                console.log(res.data)
+                if(res.data.msg=='操作成功'){
+                    this.$router.push({
+                        path:'/mymine',
+                        query:{
+                            mobile:this.mobile
+                        }
+                    })
+                }else{
+                    alert('111')
+                }
+                
+            })
         }
     },
     mounted() {},
@@ -63,7 +80,7 @@ export default {
 .mine_wrapper_title
 {
     width: 100%;
-    height: 15rem;
+    height: 8rem;
     /* background: chartreuse; */
      display: flex;
     justify-content: center;
@@ -85,11 +102,12 @@ export default {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    font-size: 0.7rem;
 }
 .mine_input_text
 {
     width: 80%;
-    height: 4.2rem;
+    height: 3.2rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -97,7 +115,7 @@ export default {
 .mine_input_password
 {
     width: 80%;
-    height: 4.2rem;
+    height: 3.2rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -105,7 +123,7 @@ export default {
 .mine_input_container div input
 {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border-top-width: 0;
     border-left-width: 0;
     border-right-width: 0;
@@ -116,7 +134,7 @@ export default {
 .mine_verify
 {
      width: 80%;
-    height: 4.2rem;
+    height: 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,19 +142,18 @@ export default {
     /* background: chartreuse; */
 }
 .mine_button{
-     width: 80%;
-    height: 7rem;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 .mine_button button
 {
-    width: 100%;
-    height: 3.5rem;
-    border-radius: 3.5rem;
-    border: 0;
-    background: orange;
+    width: 70%;
+    height: 40px;
     color: white;
+    border: 0;
+    border-radius: 40px;
+    background: orangered;
 }
 </style>
