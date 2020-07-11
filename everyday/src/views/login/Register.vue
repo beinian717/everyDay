@@ -7,69 +7,93 @@
     </div>
     <div>
       <div class="rigister_phone">
-        <input type="number" name v-model="phone" id placeholder="请输入手机号" />
-        <button style="color:orange" @click="onClick">获取验证码</button>
-        <span v-show="timeShow"></span>
+        <input type="number" name id v-model="user" placeholder="请输入手机号" />
+
+        <button :class="this.isClick?'getCode':'getGrey'" v-on:click="onClick">{{codeText}}</button>
       </div>
       <div class="rigister_phone">
         <input type="number" name id v-model="code" placeholder="请输入验证码" />
       </div>
       <div class="rigister_phone">
         <input type="password" name id placeholder="*未注册的手机号将自动注册" />
-        <button style="color:grey">使用密码登录</button>
+        <button style="color:grey" v-on:click="userPassword">使用密码登录</button>
       </div>
     </div>
     <div class="rigister_confirm">
-      <button @click="loginClick">登录</button>
+      <button v-on:click="toLogin">登录</button>
     </div>
   </div>
 </template>
 <script>
-import { Toast } from "vant";
 
 export default {
   data() {
     return {
-      phone: "",
+      user: "",
       code: "",
-      times: 60,
+      id: "",
+      time: 60,
+      isClick: true,
+      codeText: "获取验证码"
     };
   },
   methods: {
-    onClick() {
-      this.$Https
-        .post("/api/app/smsCode", {
-          mobile: this.phone,
-          sms_type: "login"
-        })
-        .then(res => {
-          console.log(res.data);
+     onClick() {
+      if (this.isClick) {
+            this.$http.post("/api/app/smsCode", { mobile: this.user, sms_type: "login" }).then(res => {
+          window.console.log(res.data);
+             this.id = setInterval(() => {
+          this.time--;
+          this.isClick = false;
+          this.codeText = `发送验证码${this.time}`;
+         
+          if (this.time <= 0) {
+            this.time = 60;
+            this.isClick = true;
+            this.codeText = `获取验证码`;
+            clearInterval(this.id);
+          }
+        }, 1000);
         });
-    },
-    loginClick() {
-      if (!this.phone) {
-        Toast("手机号不能为空");
       }
-      this.$Https
+    },
+    async toLogin() {
+      await this.$http
         .post("/api/app/login", {
-          type: 2,
-          mobile: this.phone,
+          mobile: this.user,
           sms_code: this.code,
+          type: 2,
           client: 1
         })
-        .then(resp => {
-          console.log(resp.data);
-          window.localStorage.setItem("id", resp.data.data.id);
-          window.localStorage.setItem("Token", resp.data.data.remember_token);
-          if (resp.data.data.is_new == 1) {
-            this.$router.push("/setPassWord");
-          }else{
-            this.$router.push('/mymine')
+        .then(res => {
+          window.console.log(res.data);
+          //  过期时间字符串
+          window.localStorage.setItem(
+            "adminToken",
+            res.data.data.remember_token
+          );
+          //  用户id
+          window.localStorage.setItem("userid", res.data.data.id);
+          console.log(res.data.data.is_new)
+          if(res.data.data.is_new==2){
+              this.$router.push('/mymine')
+          }else if(res.data.data.is_new==1){
+              this.$router.push({
+                  path:'/setpassword',
+                  query:{
+                      users:this.user,
+                      codes:this.code
+                  }
+              })
           }
         });
+    },
+    userPassword(){
+        this.$router.push('/getpasswork')
     }
   },
-  computed: {}
+  computed: {},
+  mounted() {}
 };
 </script>
 <style>
@@ -79,7 +103,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}  
+}
 .rigister_img {
   width: 100%;
   height: 6.5rem;
@@ -118,11 +142,17 @@ export default {
   font-size: 0.7rem;
 }
 .rigister_confirm button {
-  width: 70%;
+  width: 64%;
   height: 40px;
   color: white;
   border: 0;
   border-radius: 40px;
   background: orangered;
+}
+.getCode {
+  color: orange;
+}
+.getGrey {
+  color: #ddd;
 }
 </style>

@@ -9,12 +9,7 @@
                     <div>
                         <img src="../../assets/radio6.jpg" alt="" width="100%"/>
                     </div>
-                    <div>
-                       <button>登录</button> 
-                    </div>
-                     <div>
-                       <button>注册</button> 
-                    </div>
+                   <div style="font-size:20px">{{this.$route.query.mobile}}</div>
                 </div>
                 <div class="mymine_content_top_right">去约课</div>
              </div>
@@ -120,6 +115,11 @@ export default {
         ]
      }
  },
+ mounted(){
+         this.$http.get('/api/app/userInfo').then((res)=>{
+          console.log(res)
+         })
+     }
 }
 </script>
 <style>

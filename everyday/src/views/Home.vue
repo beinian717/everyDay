@@ -1,10 +1,12 @@
 <template>
-  <div class="home_container">
-    <!-- 轮播图部分 -->
-    <div class="swiper_container">
-      <van-swipe class="my-swipe" :show-indicators="false" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="(item,index) in swiperList" :key="index">
-          <img :src="item.banner_img" alt />
+  <div class="home">
+    <!-- =====轮播图==== -->
+    <div class="swiper_da">
+      <van-swipe class="my-swipe" :autoplay="2000" indicator-color="white">
+        <van-swipe-item v-for="(item,i) in swiper" :key="i">
+          <div class="home_swipwe">
+            <img :src="item.banner_img" alt/>
+          </div>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -16,26 +18,71 @@
           <div class="list_avatar">
             <img :src="v.teacher_avatar" alt />
           </div>
-          <div class="list_info">
-            <div class="list_info_top">{{v.teacher_name}}</div>
-            <div class="list_info_bottom">{{v.introduction}}</div>
+          <div class="introduce_txt">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======名师阵容==== -->
+    <div class="home_teacher">
+      <div class="teacher_border"></div>
+      <div class="teacher_name_title">{{this.one.name}}</div>
+    </div>
+    <!-- ======名师阵容详情==== -->
+    <div>
+      <div v-for="(item,i) in teacher" :key="i" @click="goMine" class="teacher_count">
+        <div class="teacher_iamge">
+          <img :src="item.img" />
+        </div>
+        <div class="teacher_txt">
+          {{item.name}}
+          <div class="teacher_name">
+            {{item.details}}
+            <div></div>
           </div>
         </div>
       </div>
-      <div class="list_two_container" v-if="item.channel_info.type==1">
-        <div class="list_two_item" v-for="(v,i) in item.list" :key="i">
-          <div class="list_item_top">{{v.title}}</div>
-          <div class="list_two_avatar" v-for="(value,i) in v.teachers_list" :key="i">
-            <span>
-              <img :src="value.teacher_avatar" alt />
-            </span>
-            <div
-              style="color:#B7B7B7;font-size:14px;padding-left:10px;box-sizing:border-box;"
-            >{{value.teacher_name}}</div>
+    </div>
+    <!-- ========精品课堂====== -->
+    <div class="home_jing">
+      <div class="teacher_border"></div>
+      <div class="teacher_name_title">{{this.two.name}}</div>
+    </div>
+
+    <!-- =======精品课堂详情====-->
+    <div>
+      <div v-for="(item,i) in bottom" :key="i" class="bottom_count">
+        <div>
+          <div class="home_bottom">{{item.title}}</div>
+          <div class="home_ke">{{item.ke}}</div>
+        </div>
+        <div class="buttom_img_name">
+          <div class="bottom_image">
+            <img :src="item.img" />
           </div>
-          <div class="list_two_bottom">
-            <div style="color:#B7B7B7">{{v.sales_num}}人报名</div>
-            <div>{{v.price|price}}</div>
+          <div class="buttom_name">{{item.name}}</div>
+        </div>
+        <div class="bottom_price">
+          <div class="bottom_num">{{item.num}}</div>
+          <div class="bottom_mian">{{item.mian}}</div>
+        </div>
+      </div>
+    </div>
+    <!-- ========明星讲师====== -->
+    <div class="home_jing">
+      <div class="teacher_border"></div>
+      <div class="teacher_name_title">{{this.three.name}}</div>
+    </div>
+    <!-- ======明星详情==== -->
+    <div>
+      <div v-for="(item,i) in star" :key="i"  @click="goMine" class="star_count">
+        <div class="teacher_iamge">
+          <img :src="item.img" />
+        </div>
+        <div>
+          <div class="star_txt_da">
+            <div class="star_name">{{item.name}}</div>
+            <div class="star_stite">{{item.stite}}</div>
           </div>
         </div>
       </div>
@@ -48,19 +95,38 @@ export default {
   components: {},
   data() {
     return {
-      swiperList: [],
-      listData: []
+      swiper: [],
+      introduce: [],
+      teacher: [],
+      bottom: [],
+      star: [],
+      show:false,
+      one:[],
+      two:[],
+      three:[]
     };
   },
-  computed: {},
-  filters: {
-    price(val) {
-      if (val == 0) {
-        return "免费";
-      } else {
-        return `￥${(val / 100).toFixed(2)}`;
-      }
-    }
+  name: "Home",
+  mounted() {
+    this.$http.get('/api/app/banner').then((res)=>{
+      // console.log(res.data.data)
+       this.swiper = res.data.data;
+       this.introduce = res.data.introduce;
+       this.teacher = res.data.teacher;
+       this.bottom = res.data.bottom;
+       this.star = res.data.star;
+
+    })
+     this.$http.get('/api/app/recommend/appIndex').then((res)=>{
+      console.log(res.data.data[0].channel_info)
+      //  this.introduce = res.data.introduce;
+       this.teacher = res.data.teacher;
+       this.bottom = res.data.bottom;
+       this.star = res.data.star;
+       this.one=res.data.data[0].channel_info
+       this.two=res.data.data[1].channel_info
+       this.three=res.data.data[2].channel_info
+    })
   },
   methods: {
     async ajaxSwiper() {
@@ -73,10 +139,10 @@ export default {
       this.listData = res.data;
     }
   },
-  mounted() {
-    this.ajaxSwiper();
-    this.ajaxList();
-  }
+  // mounted() {
+  //   this.ajaxSwiper();
+  //   this.ajaxList();
+  // }
 };
 </script>
 <style  scoped>

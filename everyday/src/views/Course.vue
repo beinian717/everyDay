@@ -83,8 +83,35 @@
 
     <!-- 蒙层 -->
     <div class="pop_container" v-show="popShow">
-      <div class="pop_content_left">
+      <!-- 左边弹出层 -->
+      <div class="pop_content_left" v-show="popLeft">
+        <div v-for="(item,index) in popLeftItems" :key="index">
+         <div class="pop_content_left_items">{{item.secondtitle}}</div>
+         <div class="pop_content_left_items_list">
+           <div class="pop_content_left_items_list_items" v-for="(items,index) in item.classify" :key="index">
+             <div>{{items.name}}</div>
+           </div>
+         </div>
+        </div>
 
+        <div class="pop_left_footer">
+          <div class="pop_left_footer_reset">重置</div>
+          <div class="pop_left_footer_commit">提交</div>
+        </div>
+      </div>
+      <!-- 中间弹出层 -->
+      <div class="pop_content_middle" v-show="popMiddle">
+        <div class="pop_content_middle_items" v-for="(item,index) in popMiddleItems.classify" :key="index">
+          {{item.name}}
+        </div>
+      </div>
+      <!-- 右边弹出层 -->
+      <div class="pop_content_right" v-show="popRight">
+        <div class="pop_content_right_container">
+          <div class="pop_content_left_items_list_items" v-for="(item,index) in popRightItems" :key="index">
+            {{item.name}}
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -97,10 +124,17 @@ export default {
   data() {
     return {
       list: [],
+      sorts:[],
+      popLeftItems:[],
+      popMiddleItems:[],
+      popRightItems:[],
       showDown: true,
       showUp: false,
       show: false,
-      popShow:false
+      popShow: false,
+      popLeft: false,
+      popMiddle: false,
+      popRight: false
     };
   },
   computed: {},
@@ -118,19 +152,32 @@ export default {
       });
     },
     leftClick() {
-      this.popShow=!this.popShow
+      this.popShow = !this.popShow;
+      this.popLeft = !this.popLeft;
     },
     middleClick() {
-      this.popShow=!this.popShow
+      this.popShow = !this.popShow;
+      this.popLeft=false
+      this.popMiddle = !this.popMiddle;
+      
+  
     },
     rightClick() {
-      this.popShow=!this.popShow
+      this.popShow = !this.popShow;
+      this.popRight = !this.popRight;
     }
   },
   mounted() {
-    axios.get("data.json").then(response => {
-      window.console.log(response.data);
+    axios.get("http://localhost:9000/data.json").then(response => {
+      // window.console.log(response.data);
       this.list = response.data;
+      this.sorts=this.list.sorts
+      this.popLeftItems=this.sorts[0].left
+      this.popMiddleItems=this.sorts[1]
+      this.popRightItems=this.sorts[2].classify
+      window.console.log(this.popMiddleItems)
+      window.console.log(this.popRightItems)
+      // this.popLeftItems=this.list.sorts.left
     });
   }
 };
@@ -175,6 +222,7 @@ export default {
   background: white;
   /* position: relative; */
   font-size: 16px;
+  border-bottom:1px solid rgb(214, 214, 214);
 }
 .course_sort_items {
   font-size: 16px;
@@ -240,13 +288,94 @@ export default {
 }
 .pop_container {
   width: 100vw;
-  height: 100vh;
+  height: 600px;;
   position: fixed;
+  top:100px;
   background: rgba(0, 0, 0, 0.6);
 }
-.pop_content_left{
+.pop_content_left {
+  width: 100%;
+  height: 267px;
+  background: white;
+}
+.pop_content_middle {
+  width: 100%;
+  height: 250px;
+  background: white;
+}
+.pop_content_right {
+  width: 100%;
+  height: 120px;
+  background: white;
+}
+.pop_content_left_items{
   width:100%;
-  height:65%;
-background:rosybrown;
+  height:30px;
+  font-size:14px;
+  display: flex;
+  align-items: center;
+}
+.pop_content_left_items_list{
+  width:100%;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+flex-wrap:wrap;
+}
+.pop_content_left_items_list_items{
+  width:18%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:rgb(238, 238, 238);
+  margin:0 3%;
+  margin-top:8px;
+  font-size:14px;
+}
+.pop_left_footer{
+  width:100%;
+  height: 50px;
+  /* background:pink; */
+  margin-top:10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size:14px;;
+}
+.pop_left_footer_reset{
+  width:170px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:white;
+  border:1px solid rgb(231, 231, 231);
+  color:grey;
+}
+.pop_left_footer_commit{
+  width:170px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:rgb(235, 97, 0);
+  /* border:1px solid black; */
+  color:white;
+}
+.pop_content_middle_items{
+  width:100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:16px;
+  border-bottom:1px solid rgb(236, 236, 236);;
+}
+.pop_content_right_container{
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;;
 }
 </style>

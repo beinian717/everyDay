@@ -9,17 +9,17 @@
        </div> 
        <div class="mine_input_container">
            <div class="mine_input_text">
-               <input type="number" name="" id="" placeholder="请输入手机号">
+               <input type="number" v-model="mobile" name="" id="" placeholder="请输入手机号">
            </div>
            <div class="mine_input_password">
-              <input type="password" name="" id="" placeholder="请输入密码">
+              <input type="password" v-model="password" name="" id="" placeholder="请输入密码">
            </div>
            <div class="mine_verify">
            <div @click="getPasswork">找回密码</div>
            <div @click="rigister">注册/验证码登录</div>
            </div>
            <div class="mine_button">
-               <button>登录</button>
+               <button v-on:click="goLogin">登录</button>
            </div>
        </div>
     </div>
@@ -31,7 +31,8 @@ export default {
     components: {},
     data() {
         return {
-
+           mobile:'',
+           password:''
         };
     },
     computed: {},
@@ -41,6 +42,22 @@ export default {
         },
         rigister(){
              this.$router.push("/register")
+        },
+        goLogin(){
+            this.$http.post('/api/app/login',{mobile:this.mobile,password:this.password,type:1}).then((res)=>{
+                console.log(res.data)
+                if(res.data.msg=='操作成功'){
+                    this.$router.push({
+                        path:'/mymine',
+                        query:{
+                            mobile:this.mobile
+                        }
+                    })
+                }else{
+                    alert('111')
+                }
+                
+            })
         }
     },
     mounted() {},
