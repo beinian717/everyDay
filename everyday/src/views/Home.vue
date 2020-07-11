@@ -103,7 +103,7 @@
         <div>
           <p class="show_log_yu">立即预约一对一辅导</p>
         </div>
-        <div class="log_botton">立即登录</div>
+        <div class="log_botton" @click="goTologin">立即登录</div>
       </div>
     </div>
   </div>
@@ -145,7 +145,9 @@ export default {
       console.log(res.data);
       this.homeList = res.data;
     },
-
+    goTologin(){
+      this.$router.push("/mine")
+    },
     goDetails(item) {
       console.log(item);
       this.$router.push({

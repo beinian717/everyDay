@@ -19,7 +19,7 @@
         </div>
         </div>
         <div class="get_passwork_confirm">
-            <button @click="onClick">确定</button>
+            <button>确定</button>
         </div>
     </div>
 </template>
@@ -28,10 +28,7 @@ export default {
  methods: {
      gotoback(){
          this.$router.go(-1)
-     },
-    onClick(){
-      this.$router.push("/mymine")
-    }
+     }
  },
  computed: {
  }

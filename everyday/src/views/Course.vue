@@ -128,7 +128,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("data.json").then(response => {
+    axios.get("http://localhost:8080/data.json").then(response => {
       window.console.log(response.data);
       this.list = response.data;
     });
