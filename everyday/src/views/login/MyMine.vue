@@ -5,41 +5,139 @@
         <div class="mymine_wrapper">
          <div class="mymine_content">
              <div class="mymine_content_top">
-                <div class="tmymine_content_top_left">
+                <div class="mymine_content_top_left">
                     <div>
-                        <img src="../../assets/radio6.jpg" alt="" width="100%"/>
-                    </div>
-                   <div style="font-size:20px">{{this.$route.query.mobile}}</div>
+                        <img src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/avatar.jpg" alt="" width="100%"/>
+                    </div>  
+                   <div class="mymine_content_top_phone">
+                       <div style="fontSize:1rem">{{phoneItem}}</div>
+                       <div><img src="../../assets/open.png"/></div>
+                       <!--  -->
+                   </div>
                 </div>
                 <div class="mymine_content_top_right">去约课</div>
              </div>
              <div class="mymine_content_bottom">
-                 <div v-for="(item,index) in item" :key="index" class="mymine_content_bottom_info">
-                    <div style="color:red;fontSize:1rem;fontWeight:600">{{item.number}}</div>
+                 <div v-for="(item,index) in item" :key="index" class="mymine_content_bottom_info" @click="clickTomyfc(index)">
+                    <div style="color:red;fontSize:1.5rem;fontWeight:600">{{item.number}}</div>
                     <div style="fontSize:0.85rem;fontWeight:600">{{item.title}}</div>
-                    <div>{{item.info}}</div>
+                    <div style="color:grey">{{item.info}}</div>
                  </div>
              </div>
          </div>
+         <!-- ////////////////////////////// -->
          <div class="mymine_app_container">
+             <div class="mymine_app_email">
+                 <van-icon name="envelop-o" />
+             </div>
+             <div class="mymine_app_name">
+                 <p>邀请好友注册APP，享受多重豪礼</p>
+                 <p>限时特惠，多邀多得</p>
+             </div>
+             <div class="mymine_app_right">
+                 <van-icon name="arrow" />
+             </div>
          </div>
-         <div class="mymine_info_container">
-            <div v-for="(item,index) in itemList" :key="index">
-                <h4>
-                    {{item.title}}
-                </h4>
-               <div class="mymine_info_wrapper">
-                     <div v-for="(item,index) in item.itemListinfo" :key="index" style="fontSize:0.8rem" class="mymine_info_img">
-                    <div>
-                     <img :src="item.icon"/>
-                    </div>
-                    <div>
-                        {{item.name}}
-                    </div>
-                </div>
-               </div>
-            </div>
-         </div>
+          <!-- ////////////////////////// -->
+          <!-- 课程相关 -->
+          <div class="mymine_correlation_container">
+             <div class="mymine_correlation_top" style="fontSize:1.1rem">课程相关</div>
+             <div class="mymine_correlation_bottom">
+                 <div class="mymine_correlation_item" @click=" onAttention">
+                     <div>
+                         <img src="../../assets/2020_1.png"/>
+                     </div>
+                     <div>关注的老师</div>
+                 </div>
+                  <div class="mymine_correlation_item" @click="onCollect">
+                     <div>
+                         <img src="../../assets/2020_2.png"/>
+                     </div>
+                     <div>我的收藏</div>
+                 </div>
+             </div>   
+          </div>
+
+          <!-- 订单相关 -->
+            <div class="mymine_correlation_container">
+             <div class="mymine_correlation_top" style="fontSize:1.1rem">订单相关</div>
+             <div class="mymine_correlation_bottom">
+                 <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_3.png"/>
+                     </div>
+                     <div>课程订单</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_3.png"/>
+                     </div>
+                     <div>会员订单</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_3.png"/>
+                     </div>
+                     <div>约课订单</div>
+                 </div>
+             </div>   
+          </div>
+
+          <!-- 我的账户 -->
+            <div class="mymine_correlation_container">
+             <div class="mymine_correlation_top" style="fontSize:1.1rem">我的账户</div>
+             <div class="mymine_correlation_bottom">
+                 <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_4.png"/>
+                     </div>
+                     <div>优惠券</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_5.png"/>
+                     </div>
+                     <div>学习卡</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_6.png"/>
+                     </div>
+                     <div>会员</div>
+                 </div>
+             </div>   
+          </div>
+
+          <!-- 自助服务 -->
+            <div class="mymine_correlation_container">
+             <div class="mymine_correlation_top" style="fontSize:1.1rem">自助服务</div>
+             <div class="mymine_correlation_bottom">
+                 <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_7.png"/>
+                     </div>
+                     <div>我的消息</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_8.png"/>
+                     </div>
+                     <div>意见反馈</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_9.png"/>
+                     </div>
+                     <div>在线客服</div>
+                 </div>
+                  <div class="mymine_correlation_item">
+                     <div>
+                         <img src="../../assets/2020_10.png"/>
+                     </div>
+                     <div>设置</div>
+                 </div>
+             </div>   
+          </div>
         </div>
     </div>
 </template>
@@ -63,63 +161,29 @@ export default {
                 title:"剩余学习币",
                 info:"查看剩余学习币"
             },
-        ],
-        itemList:[
-            {
-                title:"课程相关",
-                itemListinfo:[
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"关注的老师"
-                    },
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"我的收藏"
-                    },
-                ]
-            },
-            {
-                title:"订单相关",
-                itemListinfo:[
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"课程订单"
-                    },
-                    {
-                       icon:require("../../assets/001.png"),
-                        name:"会员订单"
-                    },
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"约克订单"
-                    }
-                ]
-            },
-            {
-                title:"我的账户",
-                itemListinfo:[
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"优惠券"
-                    },
-                    {
-                        icon:require("../../assets/001.png"),
-                        name:"学习卡"
-                    },
-                     {
-                        icon:require("../../assets/001.png"),
-                        name:"会员"
-                    },
-                ]
-            },
-        ]
+        ], 
+        phoneItem:this.$route.query.mobile
      }
  },
  mounted(){
          this.$http.get('/api/app/userInfo').then((res)=>{
           console.log(res)
          })
-     }
+     },
+     methods: {
+        clickTomyfc(index){
+            if(index===0){
+                this.$router.push("/myfc")
+            }
+        },
+       onAttention(){
+           this.$router.push("/attentionofteacher")
+        },
+        onCollect(){
+            this.$router.push("/myofcollect")
+
+        }
+     },
 }
 </script>
 <style>
@@ -141,7 +205,7 @@ export default {
     {
         width: 100%;
         height: 6rem;
-        background: rgb(209, 58, 3);
+        background: rgb(247, 110, 19);
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -172,7 +236,7 @@ export default {
     .mymine_content_top_right{
         width: 18%;
         height: 25px;
-        background: darkred;
+        background: rgb(247, 110, 19);
         border-top-left-radius: 2rem;
         border-bottom-left-radius: 2rem;
         display: inline-flex;
@@ -180,24 +244,46 @@ export default {
         align-items: center;
         color: white;
     }
-    .tmymine_content_top_left{
+    .mymine_content_top_left{
         width: 64%;
         /* background: crimson; */
         display: inline-flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
     }
-    .tmymine_content_top_left div:nth-child(1){
+    .mymine_content_top_left div:nth-child(1){
         width: 4rem;
         height: 4rem;
-        background: darkblue;
+        /* background: darkblue; */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 100%;
     }
-    .tmymine_content_top_left button
+    .mymine_content_top_phone
+    {
+        /* width: 1rem; */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mymine_content_top_phone div
+    {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mymine_content_top_phone div img 
+    {
+        width: 18%;
+    }
+    .mymine_content_top_left button
     {
         width: 3rem;
         height: 1.5rem;
     }
+
     .mymine_content_bottom
     {
        width: 100%;
@@ -222,31 +308,72 @@ export default {
         width: 100%;
         margin: 0.8rem 0;
         height: 3rem;
-        background: darkred;
+        background: rgb(247, 110, 19);
         border-radius: 3rem;
-    }
-    .mymine_info_wrapper
-    {
-        width: 100%;
+        color: white;
         display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .mymine_info_img
-    {
-        width: 20%;
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+    }
+    .mymine_app_container div{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mymine_app_email,.mymine_app_right{
+        width: 3rem;
+        height: 2.2rem;
+        font-size: 1.5rem;
+    }
+    .mymine_app_name{
+        flex: 1;
         flex-wrap: wrap;
-        margin: 1rem 0 ;
+        font-size: 0.8rem;
     }
-    .mymine_info_img div
+    .mymine_app_name p{
+        width: 100%;
+    }
+    .mymine_correlation_container
+    {
+        width: 100%;
+        height: 7rem;
+        /* background: chartreuse; */
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .mymine_correlation_top
+    {
+        width: 100%;
+        height: 3rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    .mymine_correlation_bottom{
+        width: 93%;
+        display: inline-flex;
+        /* background: chartreuse; */
+        /* justify-content: space-between; */
+        align-items: center;
+        font-size: 0.8rem;
+    }
+    .mymine_correlation_item
+    {
+        width: 5rem;
+        /* background: red; */
+    }
+    .mymine_correlation_item div
     {
         width: 100%;
         display: inline-flex;
-        align-items: center;
         justify-content: center;
-        height: 2.3rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .mymine_correlation_item div img
+    {
+        width: 30%;
+        height: 1.4rem;
     }
 </style>

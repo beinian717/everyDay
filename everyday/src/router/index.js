@@ -148,7 +148,8 @@ const routes = [
     name: 'MyMine',
     component:()=>import("../views/login/MyMine"),
     meta:{
-      isShow:true
+      isShow:true,
+      isShowTabbar:true
     }
   },
   {
@@ -158,6 +159,21 @@ const routes = [
     meta:{
       isShow:false
     }
+  },
+  {
+    path: '/myfc',
+    name: 'Myfc',
+    component:()=>import("../views/login/Myfc"),
+  },
+  {
+    path: '/myofcollect',
+    name: 'MyofCollect',
+    component:()=>import("../views/login/MyofCollect"),
+  },
+  {
+    path: '/attentionofteacher',
+    name: 'AttentionOfteacher',
+    component:()=>import("../views/login/AttentionOfteacher"),
   }
 ]
 
@@ -166,13 +182,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// router.beforeEach((to, from, next) => {
-//       console.log(to,from);
-//       if(to.name=="Register"){
-//         next()
-//       }
-//       next();
-// })
 
 export default router;

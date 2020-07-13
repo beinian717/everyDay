@@ -68,10 +68,7 @@ export default {
         .then(res => {
           window.console.log(res.data);
           //  过期时间字符串
-          window.localStorage.setItem(
-            "adminToken",
-            res.data.data.remember_token
-          );
+          window.localStorage.setItem("adminToken",res.data.data.remember_token);
           //  用户id
           window.localStorage.setItem("userid", res.data.data.id);
           console.log(res.data.data.is_new)
@@ -153,6 +150,6 @@ export default {
   color: orange;
 }
 .getGrey {
-  color: #ddd;
+  color: rgb(184, 183, 183);
 }
 </style>

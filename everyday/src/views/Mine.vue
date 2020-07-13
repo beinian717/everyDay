@@ -45,7 +45,8 @@ export default {
         },
         goLogin(){
             this.$http.post('/api/app/login',{mobile:this.mobile,password:this.password,type:1}).then((res)=>{
-                console.log(res.data)
+                // console.log(res.data)
+                 window.localStorage.setItem("adminToken",res.data.data.remember_token);
                 if(res.data.msg=='操作成功'){
                     this.$router.push({
                         path:'/mymine',

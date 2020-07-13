@@ -15,7 +15,6 @@
       <div class="home_introduce">
         <div
           class="home_introduce_conter"
-          @click="goDetails(item)"
           v-for="(item,i) in introduce"
           :key="i"
         >
@@ -28,12 +27,12 @@
     </div>
 
     <!-- 下边的内容 -->
-    <div class="home_container" v-for="(item,index) in homeList" @click="goMine" :key="index">
+    <div class="home_container" v-for="(item,index) in homeList" :key="index">
       <!-- ======名师阵容==== -->
       <div class="home_teacher" v-if="item.channel_info.type===3">
         <div class="home_name">{{item.channel_info.name}}</div>
         <div class="home_index_da">
-          <div v-for="(v,i) in item.list" :key="i" class="index_count">
+          <div v-for="(v,i) in item.list" :key="i" class="index_count" @click="goDetails(v)">
             <div class="home_image">
               <img :src="v.teacher_avatar" />
             </div>
@@ -115,7 +114,8 @@ export default {
       swiper: [],
       introduce: [],
       show: false,
-      homeList: []
+      homeList: [],
+      teacherItem:[]
     };
   },
   filters: {
@@ -140,33 +140,41 @@ export default {
       let { data: res } = await this.$http.get(
         "https://www.365msmk.com/api/app/recommend/appIndex?"
       );
-      console.log(res.data);
+      // console.log(res.data);
       this.homeList = res.data;
     },
     goTologin(){
       this.$router.push("/mine")
     },
-    goDetails(item) {
-      console.log(item);
-      this.$router.push({
-        name: "details",
-        params: {
-          mass: item
+    goDetails(v) {
+      // console.log(v);
+        let TokenBy=localStorage.getItem("adminToken")
+        // console.log(TokenBy)
+        if(TokenBy){
+          this.$http.get(`/api/app/teacher/${v.teacher_id}`).then((response)=>{
+            // console.log(response.data)
+            this.$router.push({
+              name:"details",
+              query:{
+                id:v.teacher_id,
+                data:response.data.data
+              }
+            })
+          })
+        }else{
+          this.show=true
         }
-      });
-    },
-    goMine() {
-      console.log(1111)
-      this.show = true;
+      // this.$router.push({
+      //   name: "details",
+      //   params: {
+      //     mass: item
+      //   }
+      // });
     },
     icon() {
       this.show = false;
     }
   },
-  // mounted() {
-  //   this.ajaxSwiper();
-  //   this.ajaxList();
-  // }
 };
 </script>
 <style  scoped>
